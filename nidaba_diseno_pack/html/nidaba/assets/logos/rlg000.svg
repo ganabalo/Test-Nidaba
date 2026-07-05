@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320" role="img" aria-labelledby="title desc">
+  <title id="title">Logia General de Pruebas</title>
+  <desc id="desc">Sello geométrico sobrio para la logia de pruebas.</desc>
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e0c37b"/>
+      <stop offset="100%" stop-color="#a78434"/>
+    </linearGradient>
+  </defs>
+  <rect width="320" height="320" rx="42" fill="#121720"/>
+  <circle cx="160" cy="160" r="108" fill="none" stroke="url(#g)" stroke-width="7"/>
+  <circle cx="160" cy="160" r="84" fill="none" stroke="url(#g)" stroke-opacity=".35" stroke-width="3"/>
+  <path d="M160 68 238 148 160 252 82 148Z" fill="none" stroke="url(#g)" stroke-width="8" stroke-linejoin="round"/>
+  <path d="M122 196h76" stroke="url(#g)" stroke-width="10" stroke-linecap="round"/>
+  <path d="M160 100v96" stroke="url(#g)" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="160" cy="160" r="14" fill="url(#g)"/>
+</svg>

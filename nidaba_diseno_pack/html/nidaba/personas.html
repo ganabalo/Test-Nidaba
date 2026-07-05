@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nidaba · Personas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles/app.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="topbar-home">
+        <a class="ghost-btn topbar-home-btn" href="./index.html">Inicio</a>
+        <div class="topbar-title">
+          <strong>Nidaba</strong>
+          <span>Administración de personas</span>
+        </div>
+      </div>
+      <div class="topbar-context">
+        <div class="topbar-chip">
+          <span>Usuario</span>
+          <strong id="topbar-user">Sin sesión</strong>
+        </div>
+        <div class="topbar-chip">
+          <span>Contexto</span>
+          <strong id="topbar-context">Sin contexto</strong>
+        </div>
+      </div>
+      <div class="topbar-status" id="topbar-status">Sin novedades.</div>
+    </div>
+  </header>
+
+  <div class="page-shell">
+    <aside class="auth-panel">
+      <a class="brand-block brand-link" href="./index.html" aria-label="Volver al inicio">
+        <img class="brand-mark" src="./styles/nidaba-mark.svg" alt="Nidaba">
+        <div>
+          <p class="brand-kicker">Tesorería y administración de cuentas</p>
+          <h1>Nidaba</h1>
+          <p class="brand-copy">Registro integral de personas naturales o jurídicas que participan en la operación administrativa y financiera.</p>
+        </div>
+      </a>
+
+      <div class="auth-card">
+        <section class="auth-session" id="auth-session">
+          <div class="auth-session-header">
+            <div>
+              <span class="info-eyebrow">Sesión abierta</span>
+              <h2 id="auth-session-title">Operador autenticado</h2>
+            </div>
+            <div class="auth-session-actions">
+              <button type="button" class="ghost-btn" id="go-usuarios-btn">Usuarios</button>
+              <button type="button" class="ghost-btn" id="logout-btn">Cerrar sesión</button>
+            </div>
+          </div>
+          <dl class="meta-list compact" id="auth-session-meta">
+            <div><dt>Estado</dt><dd>Sin sesión</dd></div>
+          </dl>
+          <div id="session-message" class="form-message"></div>
+        </section>
+      </div>
+    </aside>
+
+    <main class="context-panel">
+      <section class="hero-band">
+        <div class="hero-ambient">
+          <span class="hero-orbit orbit-a"></span>
+          <span class="hero-orbit orbit-b"></span>
+          <span class="hero-orbit orbit-c"></span>
+          <span class="hero-starfield"></span>
+          <span class="hero-column column-a"></span>
+          <span class="hero-column column-b"></span>
+        </div>
+        <div class="hero-copy">
+          <span class="hero-tag" id="hero-logia-label">Administración de personas</span>
+          <h2>Ficha canónica de personas para tesorería y operación.</h2>
+          <p>Esta mesa centraliza los atributos de personas, su actualización y su baja, manteniendo el RUT como llave canónica de referencia.</p>
+          <div class="hero-ribbon">
+            <span>RUT</span>
+            <span>Contacto</span>
+            <span>Trazabilidad</span>
+          </div>
+        </div>
+        <div class="hero-seal">
+          <div class="seal-stage">
+            <div class="seal-ring">
+              <img id="logia-logo-image" class="logia-logo-image" src="./styles/nidaba-mark.svg" alt="Logo de la logia">
+            </div>
+            <div class="seal-caption">Identidad visible del servicio activo</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="workspace-panel">
+        <div class="workspace-header">
+          <div>
+            <span class="info-eyebrow">Personas</span>
+            <h3>Mantención completa</h3>
+          </div>
+          <div class="auth-session-actions">
+            <button type="button" class="ghost-btn" id="new-person-btn">Nueva ficha</button>
+            <button type="button" class="ghost-btn" id="back-home-btn">Volver al portal</button>
+          </div>
+        </div>
+
+        <div class="workspace-grid personas-grid">
+          <article class="workspace-card">
+            <p class="section-copy">Los registros se crean como globales. Si una persona ya está referenciada, la eliminación se resuelve sin perder integridad.</p>
+            <form id="person-form" class="auth-form compact-form">
+              <div class="form-grid">
+                <div>
+                  <label for="person-rut">RUT</label>
+                  <input id="person-rut" name="rut" type="text" maxlength="50" required placeholder="12.345.678-5 o P-ESPECIAL">
+                  <div id="person-rut-message" class="field-message" aria-live="polite"></div>
+                </div>
+                <div>
+                  <label for="person-owner">Owner</label>
+                  <input id="person-owner" name="owner" type="text" value="global" readonly class="readonly-input">
+                </div>
+                <div>
+                  <label for="person-type">Tipo de persona</label>
+                  <select id="person-type" name="tipo_persona">
+                    <option value="N">Natural</option>
+                    <option value="J">Jurídica</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="person-active">Estado</label>
+                  <label class="inline-check" for="person-active">
+                    <input id="person-active" name="activa" type="checkbox" checked>
+                    <span>Registro activo</span>
+                  </label>
+                </div>
+                <div>
+                  <label for="person-nombres">Nombres</label>
+                  <input id="person-nombres" name="nombres" type="text" maxlength="200" placeholder="Nombres">
+                </div>
+                <div>
+                  <label for="person-apellido-paterno">Apellido paterno</label>
+                  <input id="person-apellido-paterno" name="apellido_paterno" type="text" maxlength="200" placeholder="Apellido paterno">
+                </div>
+                <div>
+                  <label for="person-apellido-materno">Apellido materno</label>
+                  <input id="person-apellido-materno" name="apellido_materno" type="text" maxlength="200" placeholder="Apellido materno">
+                </div>
+                <div>
+                  <label for="person-razon-social">Razón social</label>
+                  <input id="person-razon-social" name="razon_social" type="text" maxlength="200" placeholder="Solo para persona jurídica">
+                </div>
+                <div class="form-span-2">
+                  <label for="person-name">Nombre completo</label>
+                  <input id="person-name" name="nombre_completo" type="text" maxlength="200" required placeholder="Nombre completo o razón social">
+                </div>
+                <div>
+                  <label for="person-email">Correo</label>
+                  <input id="person-email" name="email" type="email" maxlength="200" placeholder="correo@dominio.cl">
+                </div>
+                <div>
+                  <label for="person-phone">Teléfono</label>
+                  <input id="person-phone" name="telefono" type="text" maxlength="50" placeholder="+56 ...">
+                </div>
+                <div>
+                  <label for="person-fiscal-id">Identificador fiscal</label>
+                  <input id="person-fiscal-id" name="identificador_fiscal" type="text" maxlength="200" placeholder="Identificador adicional">
+                </div>
+                <div class="form-span-2">
+                  <label for="person-observacion">Observación</label>
+                  <textarea id="person-observacion" name="observacion" rows="4" placeholder="Notas administrativas o antecedentes relevantes."></textarea>
+                </div>
+              </div>
+
+              <div class="secondary-actions">
+                <button type="submit" class="primary-btn" id="save-person-btn">Guardar persona</button>
+                <button type="button" class="ghost-btn" id="delete-person-btn">Eliminar</button>
+              </div>
+              <div id="person-form-message" class="form-message" aria-live="polite"></div>
+            </form>
+          </article>
+
+          <article class="workspace-card">
+            <div class="table-card-header">
+              <div>
+                <span class="info-eyebrow">Consulta</span>
+                <h4>Personas registradas</h4>
+              </div>
+              <button type="button" class="ghost-btn" id="refresh-persons-btn">Actualizar</button>
+            </div>
+            <label for="person-search">Buscar</label>
+            <input id="person-search" type="search" placeholder="RUT, nombre, razón social o correo">
+            <div id="persons-table-message" class="form-message"></div>
+            <div class="table-wrap">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>RUT</th>
+                    <th>Nombre</th>
+                    <th>Tipo</th>
+                    <th>Correo</th>
+                    <th>Estado</th>
+                  </tr>
+                </thead>
+                <tbody id="persons-table-body">
+                  <tr><td colspan="5">Sin datos.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="./styles/personas.js"></script>
+</body>
+</html>

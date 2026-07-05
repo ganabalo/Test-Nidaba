@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nidaba · Acceso</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles/app.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="topbar-home">
+        <a class="ghost-btn topbar-home-btn" href="./index.html">Inicio</a>
+        <div class="topbar-title">
+          <strong>Nidaba</strong>
+          <span>Portal de tesorería</span>
+        </div>
+      </div>
+      <div class="topbar-context">
+        <div class="topbar-chip">
+          <span>Usuario</span>
+          <strong id="topbar-user">Sin sesión</strong>
+        </div>
+        <div class="topbar-chip">
+          <span>Contexto</span>
+          <strong id="topbar-context">Sin contexto</strong>
+        </div>
+      </div>
+      <div class="topbar-status" id="topbar-status">Sin novedades.</div>
+    </div>
+  </header>
+  <div class="page-shell">
+    <aside class="auth-panel">
+      <a class="brand-block brand-link" href="./index.html" aria-label="Volver al inicio">
+        <img class="brand-mark" src="./styles/nidaba-mark.svg" alt="Nidaba">
+        <div>
+          <p class="brand-kicker">Tesorería y administración de cuentas</p>
+          <h1>Nidaba</h1>
+          <p class="brand-copy">Acceso reservado para la gestión financiera, el control de cuentas y la continuidad administrativa de su logia.</p>
+        </div>
+      </a>
+
+      <div class="auth-card">
+        <div class="auth-tabs" role="tablist" aria-label="Accesos" id="auth-tabs">
+          <button class="auth-tab is-active" type="button" data-panel="login">Ingresar</button>
+          <button class="auth-tab" type="button" data-panel="recover">Recuperar clave</button>
+          <button class="auth-tab" type="button" data-panel="change">Cambiar clave</button>
+        </div>
+
+        <section class="auth-session" id="auth-session" hidden>
+          <div class="auth-session-header">
+            <div>
+              <span class="info-eyebrow">Sesión abierta</span>
+              <h2 id="auth-session-title">Operador autenticado</h2>
+            </div>
+            <div class="auth-session-actions">
+              <button type="button" class="ghost-btn" id="auth-open-change-btn">Cambiar clave</button>
+              <button type="button" class="ghost-btn" id="auth-logout-btn">Cerrar sesión</button>
+            </div>
+          </div>
+          <dl class="meta-list compact" id="auth-session-meta">
+            <div><dt>Estado</dt><dd>Sin sesión</dd></div>
+          </dl>
+        </section>
+
+        <section class="auth-section is-active" id="panel-login">
+          <h2>Ingreso seguro</h2>
+          <p class="section-copy">Ingrese con su cuenta de tesorería. Si administra más de un frente de trabajo, podrá escogerlo después.</p>
+          <form id="login-form" class="auth-form">
+            <label for="login-username">Usuario o correo</label>
+            <input id="login-username" name="username" type="text" autocomplete="username" required placeholder="ganabalo o correo">
+
+            <label for="login-password">Clave</label>
+            <input id="login-password" name="password" type="password" autocomplete="current-password" required placeholder="••••••••">
+
+            <button type="submit" class="primary-btn">Ingresar</button>
+            <div id="login-message" class="form-message" aria-live="polite"></div>
+          </form>
+        </section>
+
+        <section class="auth-section" id="panel-recover">
+          <h2>Recuperación de clave</h2>
+          <p class="section-copy">Solicite un enlace o token de recuperación para reestablecer su acceso.</p>
+          <form id="recover-form" class="auth-form">
+            <label for="recover-email">Correo de acceso</label>
+            <input id="recover-email" name="email" type="email" autocomplete="email" required placeholder="ganabalo@gmail.cl">
+
+            <button type="submit" class="primary-btn secondary-tone">Enviar recuperación</button>
+            <div id="recover-message" class="form-message" aria-live="polite"></div>
+          </form>
+        </section>
+
+        <section class="auth-section" id="panel-change">
+          <h2>Cambio de clave</h2>
+          <p class="section-copy">Disponible para usuarios autenticados o mediante token de recuperación.</p>
+          <form id="change-form" class="auth-form">
+            <label for="change-username">Usuario</label>
+            <input id="change-username" name="username" type="text" autocomplete="username" required placeholder="ganabalo">
+
+            <label for="change-current-password">Clave actual</label>
+            <input id="change-current-password" name="current_password" type="password" autocomplete="current-password" required placeholder="••••••••">
+
+            <label for="change-new-password">Nueva clave</label>
+            <input id="change-new-password" name="new_password" type="password" autocomplete="new-password" minlength="8" required placeholder="Mínimo 8 caracteres">
+
+            <label for="change-confirm-password">Confirmar nueva clave</label>
+            <input id="change-confirm-password" name="confirm_password" type="password" autocomplete="new-password" minlength="8" required placeholder="Repita la nueva clave">
+
+            <button type="submit" class="primary-btn">Actualizar clave</button>
+            <div id="change-message" class="form-message" aria-live="polite"></div>
+          </form>
+        </section>
+      </div>
+    </aside>
+
+    <main class="context-panel">
+      <section class="hero-band">
+        <div class="hero-ambient">
+          <span class="hero-orbit orbit-a"></span>
+          <span class="hero-orbit orbit-b"></span>
+          <span class="hero-orbit orbit-c"></span>
+          <span class="hero-starfield"></span>
+          <span class="hero-column column-a"></span>
+          <span class="hero-column column-b"></span>
+        </div>
+        <div class="hero-copy">
+          <span class="hero-tag" id="hero-logia-label">Tesorería de la logia</span>
+          <h2>Una sala de trabajo para custodiar cuentas, regularidad y criterio.</h2>
+          <p>El acceso, la consulta y la administración financiera se presentan en un entorno sereno, reservado y reconocible para quienes sostienen la tesorería de su logia.</p>
+          <div class="hero-ribbon">
+            <span>Tesorería</span>
+            <span>Cuentas</span>
+            <span>Regularidad</span>
+          </div>
+          <div class="hero-ledger">
+            <div class="ledger-line">
+              <span class="ledger-label">Disponibilidad</span>
+              <strong>Acceso continuo</strong>
+            </div>
+            <div class="ledger-line">
+              <span class="ledger-label">Identidad</span>
+              <strong>Logo institucional cargado al ingresar</strong>
+            </div>
+            <div class="ledger-line">
+              <span class="ledger-label">Seguridad</span>
+              <strong>Control de clave y sesión en la misma portada</strong>
+            </div>
+          </div>
+        </div>
+        <div class="hero-seal">
+          <div class="seal-stage">
+            <div class="seal-ring" id="logia-logo-shell">
+              <img id="logia-logo-image" class="logia-logo-image" src="./styles/nidaba-mark.svg" alt="Logo de la logia">
+            </div>
+            <div class="seal-caption">Sello institucional de la logia</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="insight-grid">
+        <article class="info-card feature-card">
+          <span class="info-eyebrow">Seguridad</span>
+          <h3>Un acceso hecho para tesorería, no una pantalla genérica.</h3>
+          <p>La primera vista debe sentirse institucional, sobria y propia. Aquí la seguridad, la identidad visual y la continuidad operativa conviven en una sola entrada de trabajo.</p>
+          <div class="feature-metrics">
+            <div>
+              <span>Clave</span>
+              <strong>gestión directa</strong>
+            </div>
+            <div>
+              <span>Sesión</span>
+              <strong>contexto activo</strong>
+            </div>
+            <div>
+              <span>Logo</span>
+              <strong>carga automática</strong>
+            </div>
+          </div>
+        </article>
+        <div class="insight-stack">
+          <article class="info-card">
+            <span class="info-eyebrow">Operación diaria</span>
+            <h3>Trabajo enfocado</h3>
+            <p>La consulta de personas, cuentas y datos administrativos queda disponible desde una misma sesión, sin ruido visual y con una jerarquía más clara.</p>
+          </article>
+          <article class="info-card">
+            <span class="info-eyebrow">Cuentas de miembros</span>
+            <h3>Registro consistente</h3>
+            <p>La base de personas debe sostener cuentas, contacto y trazabilidad administrativa con precisión y una lectura simple para el operador.</p>
+          </article>
+          <article class="info-card">
+            <span class="info-eyebrow">Identidad visual</span>
+            <h3>Logo y papelería</h3>
+            <p>El sello visual de la logia debe acompañar el acceso, la mesa de trabajo y la documentación emitida por la tesorería.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="status-strip">
+        <div>
+          <strong>Base operativa</strong>
+          <span>Esta portada será el punto de entrada para usuarios, seguridad, identidad institucional y preparación del trabajo diario.</span>
+        </div>
+        <div>
+          <strong>Criterio visual</strong>
+          <span>La experiencia debe sentirse ceremonial y seria, pero siempre aplicada al oficio de tesorería y administración de cuentas.</span>
+        </div>
+      </section>
+
+      <section class="workspace-panel" id="screen-home" data-screen="home">
+        <div class="workspace-header">
+          <div>
+            <span class="info-eyebrow">Portal operativo</span>
+            <h3>Acceso y funciones disponibles</h3>
+          </div>
+          <button type="button" class="ghost-btn" id="logout-btn">Cerrar sesión</button>
+        </div>
+
+        <div class="workspace-grid">
+          <article class="workspace-card">
+            <h4>Sesión</h4>
+            <dl class="meta-list" id="session-meta">
+              <div><dt>Estado</dt><dd>Sin sesión</dd></div>
+            </dl>
+          </article>
+
+          <article class="workspace-card">
+            <h4>Contexto</h4>
+            <label for="context-selector">Logia de trabajo</label>
+            <select id="context-selector"></select>
+            <div id="context-message" class="form-message"></div>
+          </article>
+        </div>
+
+        <article class="workspace-card">
+          <div class="table-card-header">
+            <div>
+              <span class="info-eyebrow">Funciones</span>
+              <h4>Acciones de tesorería y administración</h4>
+            </div>
+          </div>
+          <div class="action-grid">
+            <button type="button" class="action-tile" id="action-create-user" data-requires-login="true" data-role="superuser">
+              <span class="info-eyebrow">Seguridad</span>
+              <strong>Crear usuarios</strong>
+              <span>Alta de usuarios operadores y asignación de logia.</span>
+            </button>
+            <button type="button" class="action-tile" id="action-manage-personas" data-requires-login="true" data-role="superuser">
+              <span class="info-eyebrow">Personas</span>
+              <strong>Administrar personas</strong>
+              <span>Registro, actualización y baja de personas naturales o jurídicas.</span>
+            </button>
+            <button type="button" class="action-tile" id="action-budget-assignment" data-requires-login="true">
+              <span class="info-eyebrow">Presupuesto</span>
+              <strong>Asignación presupuestaria</strong>
+              <span>Documento operativo para registrar fuentes y usos equilibrados por repartición.</span>
+            </button>
+            <button type="button" class="action-tile" id="action-members" disabled>
+              <span class="info-eyebrow">Cuentas</span>
+              <strong>Cuentas de miembros</strong>
+              <span>Próxima función operativa de tesorería.</span>
+            </button>
+            <button type="button" class="action-tile" id="action-receipts" disabled>
+              <span class="info-eyebrow">Recaudación</span>
+              <strong>Ingresos y recaudos</strong>
+              <span>Registro de pagos, cuotas y otros movimientos.</span>
+            </button>
+            <button type="button" class="action-tile" id="action-reports" disabled>
+              <span class="info-eyebrow">Informes</span>
+              <strong>Estados y reportes</strong>
+              <span>Consulta y emisión de reportes financieros.</span>
+            </button>
+          </div>
+          <div id="home-message" class="form-message"></div>
+        </article>
+
+        <article class="workspace-card table-card">
+          <div class="table-card-header">
+            <div>
+              <span class="info-eyebrow">Consulta rápida</span>
+              <h4 id="personas-title">Cuentas de personas</h4>
+            </div>
+            <button type="button" class="ghost-btn" id="refresh-personas">Recargar</button>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>RUT</th>
+                  <th>Nombre</th>
+                  <th>Correo</th>
+                  <th>Teléfono</th>
+                  <th>Tipo</th>
+                  <th>Activo</th>
+                </tr>
+              </thead>
+              <tbody id="personas-body">
+                <tr><td colspan="6">Inicie sesión para consultar las personas disponibles en su logia.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="./styles/app.js"></script>
+</body>
+</html>

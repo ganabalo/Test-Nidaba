@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nidaba · Usuarios</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@600;700&display=swap" rel="stylesheet">
+  <script type="module" crossorigin src="/assets/usuarios-D3Tx5yw7.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/auth-BgsAIC7-.js">
+  <link rel="stylesheet" crossorigin href="/assets/auth-B2lh0rEU.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="topbar-home">
+        <a class="ghost-btn topbar-home-btn" href="./index.html">Inicio</a>
+        <div class="topbar-title">
+          <strong>Nidaba</strong>
+          <span>Administración de usuarios</span>
+        </div>
+      </div>
+      <div class="topbar-context">
+        <div class="topbar-chip">
+          <span>Usuario</span>
+          <strong id="topbar-user">Sin sesión</strong>
+        </div>
+        <div class="topbar-chip">
+          <span>Contexto</span>
+          <strong id="topbar-context">Sin contexto</strong>
+        </div>
+      </div>
+      <div class="topbar-status" id="topbar-status">Sin novedades.</div>
+    </div>
+  </header>
+  <div class="page-shell">
+    <aside class="auth-panel">
+      <a class="brand-block brand-link" href="./index.html" aria-label="Volver al inicio">
+        <img class="brand-mark" src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20128%20128'%20role='img'%20aria-labelledby='title%20desc'%3e%3ctitle%20id='title'%3eNidaba%3c/title%3e%3cdesc%20id='desc'%3eMarca%20geométrica%20dorada%20para%20el%20acceso%20de%20Nidaba.%3c/desc%3e%3cdefs%3e%3clinearGradient%20id='gold'%20x1='0%25'%20y1='0%25'%20x2='100%25'%20y2='100%25'%3e%3cstop%20offset='0%25'%20stop-color='%23e0c37b'/%3e%3cstop%20offset='100%25'%20stop-color='%23a88534'/%3e%3c/linearGradient%3e%3c/defs%3e%3crect%20width='128'%20height='128'%20rx='28'%20fill='%2311161d'/%3e%3ccircle%20cx='64'%20cy='64'%20r='44'%20fill='none'%20stroke='url(%23gold)'%20stroke-width='2.5'%20opacity='0.95'/%3e%3ccircle%20cx='64'%20cy='64'%20r='31'%20fill='none'%20stroke='url(%23gold)'%20stroke-width='1.4'%20opacity='0.5'/%3e%3cpath%20d='M64%2024%2088%2068%2064%20104%2040%2068Z'%20fill='none'%20stroke='url(%23gold)'%20stroke-width='3'%20stroke-linejoin='round'/%3e%3cpath%20d='M64%2040%2074%2058H54Z'%20fill='url(%23gold)'%20opacity='0.86'/%3e%3cpath%20d='M52%2072h24'%20stroke='url(%23gold)'%20stroke-width='3'%20stroke-linecap='round'/%3e%3cpath%20d='M58%2080h12'%20stroke='url(%23gold)'%20stroke-width='3'%20stroke-linecap='round'%20opacity='0.92'/%3e%3c/svg%3e" alt="Nidaba">
+        <div>
+          <p class="brand-kicker">Tesorería y administración de cuentas</p>
+          <h1>Nidaba</h1>
+          <p class="brand-copy">Administración de usuarios operadores para la continuidad segura de la tesorería.</p>
+        </div>
+      </a>
+
+      <div class="auth-card">
+        <section class="auth-session" id="auth-session">
+          <div class="auth-session-header">
+            <div>
+              <span class="info-eyebrow">Sesión abierta</span>
+              <h2 id="auth-session-title">Operador autenticado</h2>
+            </div>
+            <div class="auth-session-actions">
+              <button type="button" class="ghost-btn" id="go-home-btn">Inicio</button>
+              <button type="button" class="ghost-btn" id="logout-btn">Cerrar sesión</button>
+            </div>
+          </div>
+          <dl class="meta-list compact" id="auth-session-meta">
+            <div><dt>Estado</dt><dd>Sin sesión</dd></div>
+          </dl>
+          <div id="session-message" class="form-message"></div>
+        </section>
+      </div>
+    </aside>
+
+    <main class="context-panel">
+      <section class="hero-band">
+        <div class="hero-ambient">
+          <span class="hero-orbit orbit-a"></span>
+          <span class="hero-orbit orbit-b"></span>
+          <span class="hero-orbit orbit-c"></span>
+          <span class="hero-starfield"></span>
+          <span class="hero-column column-a"></span>
+          <span class="hero-column column-b"></span>
+        </div>
+        <div class="hero-copy">
+          <span class="hero-tag" id="hero-logia-label">Administración de usuarios</span>
+          <h2>Alta formal de personas y usuarios operadores.</h2>
+          <p>Esta función registra los datos esenciales de la persona y crea su cuenta operativa con el servicio que le corresponde.</p>
+          <div class="hero-ribbon">
+            <span>Personas</span>
+            <span>Usuarios</span>
+            <span>Seguridad</span>
+          </div>
+        </div>
+        <div class="hero-seal">
+          <div class="seal-stage">
+            <div class="seal-ring">
+              <img id="logia-logo-image" class="logia-logo-image" src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20128%20128'%20role='img'%20aria-labelledby='title%20desc'%3e%3ctitle%20id='title'%3eNidaba%3c/title%3e%3cdesc%20id='desc'%3eMarca%20geométrica%20dorada%20para%20el%20acceso%20de%20Nidaba.%3c/desc%3e%3cdefs%3e%3clinearGradient%20id='gold'%20x1='0%25'%20y1='0%25'%20x2='100%25'%20y2='100%25'%3e%3cstop%20offset='0%25'%20stop-color='%23e0c37b'/%3e%3cstop%20offset='100%25'%20stop-color='%23a88534'/%3e%3c/linearGradient%3e%3c/defs%3e%3crect%20width='128'%20height='128'%20rx='28'%20fill='%2311161d'/%3e%3ccircle%20cx='64'%20cy='64'%20r='44'%20fill='none'%20stroke='url(%23gold)'%20stroke-width='2.5'%20opacity='0.95'/%3e%3ccircle%20cx='64'%20cy='64'%20r='31'%20fill='none'%20stroke='url(%23gold)'%20stroke-width='1.4'%20opacity='0.5'/%3e%3cpath%20d='M64%2024%2088%2068%2064%20104%2040%2068Z'%20fill='none'%20stroke='url(%23gold)'%20stroke-width='3'%20stroke-linejoin='round'/%3e%3cpath%20d='M64%2040%2074%2058H54Z'%20fill='url(%23gold)'%20opacity='0.86'/%3e%3cpath%20d='M52%2072h24'%20stroke='url(%23gold)'%20stroke-width='3'%20stroke-linecap='round'/%3e%3cpath%20d='M58%2080h12'%20stroke='url(%23gold)'%20stroke-width='3'%20stroke-linecap='round'%20opacity='0.92'/%3e%3c/svg%3e" alt="Logo de la logia">
+            </div>
+            <div class="seal-caption">Identidad visible del servicio activo</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="workspace-panel">
+        <div class="workspace-header">
+          <div>
+            <span class="info-eyebrow">Administración</span>
+            <h3>Creación de usuarios operadores</h3>
+          </div>
+          <div class="auth-session-actions">
+            <button type="button" class="ghost-btn" id="go-personas-btn">Personas</button>
+            <button type="button" class="ghost-btn" id="back-home-btn">Volver al portal</button>
+          </div>
+        </div>
+
+        <article class="workspace-card">
+          <p class="section-copy">Use solo los datos esenciales: nombres, correo y RUT para la persona; usuario, clave inicial y servicio para la cuenta operativa.</p>
+          <form id="user-create-form" class="auth-form compact-form">
+            <div class="form-grid">
+              <div>
+                <label for="create-rut">RUT</label>
+                <input id="create-rut" name="rut" type="text" maxlength="50" required placeholder="12345678K o P-ESPECIAL">
+                <div id="rut-message" class="field-message" aria-live="polite"></div>
+              </div>
+              <div>
+                <label for="create-name">Nombres</label>
+                <input id="create-name" name="nombres" type="text" required placeholder="Nombre completo">
+              </div>
+              <div>
+                <label for="create-email">Correo</label>
+                <input id="create-email" name="email" type="email" required placeholder="correo@servicio.cl">
+              </div>
+              <div>
+                <label for="create-username">Usuario</label>
+                <input id="create-username" name="username" type="text" required placeholder="usuario_operador">
+              </div>
+              <div>
+                <label for="create-password">Clave inicial</label>
+                <input id="create-password" name="password" type="password" minlength="8" required placeholder="Mínimo 8 caracteres">
+              </div>
+              <div>
+                <label for="create-owner">Servicio del usuario</label>
+                <div class="field-inline">
+                  <select id="create-owner" name="owner"></select>
+                  <button type="button" class="ghost-btn inline-btn" id="open-service-modal-btn">Agregar servicio</button>
+                  <button type="button" class="ghost-btn inline-btn" id="assign-permissions-btn">Asignar permisos</button>
+                </div>
+                <div id="owner-help" class="field-message" aria-live="polite"></div>
+              </div>
+            </div>
+
+            <label class="inline-check" for="create-superuser">
+              <input id="create-superuser" name="es_superusuario" type="checkbox">
+              <span>Crear como superusuario</span>
+            </label>
+
+            <button type="submit" class="primary-btn">Crear usuario</button>
+            <div id="create-user-message" class="form-message" aria-live="polite"></div>
+          </form>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal-shell" id="service-modal" hidden>
+    <div class="modal-backdrop" data-close-service-modal></div>
+    <section class="modal-card" role="dialog" aria-modal="true" aria-labelledby="service-modal-title">
+      <div class="workspace-header modal-header">
+        <div>
+          <span class="info-eyebrow">Servicios</span>
+          <h3 id="service-modal-title">Agregar servicio</h3>
+        </div>
+        <button type="button" class="ghost-btn" data-close-service-modal>Cerrar</button>
+      </div>
+
+      <p class="section-copy">Registre el esquema operativo, el nombre visible del servicio y la persona que lo representa para su identificación financiera.</p>
+
+      <form id="service-create-form" class="auth-form compact-form">
+        <div class="form-grid">
+          <div>
+            <label for="service-id">ID del servicio</label>
+            <input id="service-id" name="servicio_id" type="text" maxlength="6" required placeholder="rlg000">
+            <div id="service-id-message" class="field-message" aria-live="polite">Use tres letras y tres cifras. El formato operativo es `xxx###`.</div>
+          </div>
+          <div>
+            <label for="service-name">Nombre del servicio</label>
+            <input id="service-name" name="nombre" type="text" maxlength="200" required placeholder="Servicio General de Pruebas">
+          </div>
+          <div>
+            <label for="service-rut">RUT identificador</label>
+            <div class="field-inline">
+              <input id="service-rut" name="persona_rut" type="text" maxlength="50" required placeholder="12.345.678-5 o P-SERVICIO">
+              <button type="button" class="ghost-btn inline-btn" id="lookup-service-person-btn">Buscar</button>
+            </div>
+            <div id="service-rut-message" class="field-message" aria-live="polite"></div>
+          </div>
+          <div>
+            <label for="service-person-name">Persona representante</label>
+            <input id="service-person-name" name="persona_nombre" type="text" readonly class="readonly-input" placeholder="Se completa al validar el RUT">
+          </div>
+          <div class="form-span-2">
+            <label for="service-ayuda">Observaciones</label>
+            <textarea id="service-ayuda" name="ayuda" rows="4" placeholder="Observaciones operativas, ayudas o notas del servicio."></textarea>
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button type="submit" class="primary-btn">Guardar servicio</button>
+          <button type="button" class="ghost-btn" data-close-service-modal>Cancelar</button>
+        </div>
+        <div id="service-create-message" class="form-message" aria-live="polite"></div>
+      </form>
+    </section>
+  </div>
+
+</body>
+</html>

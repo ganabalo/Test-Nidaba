@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nidaba · Asignación Presupuestaria</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles/app.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="topbar-home">
+        <a class="ghost-btn topbar-home-btn" href="./index.html">Inicio</a>
+        <div class="topbar-title">
+          <strong>Nidaba</strong>
+          <span>Asignación presupuestaria</span>
+        </div>
+      </div>
+      <div class="topbar-context">
+        <div class="topbar-chip">
+          <span>Usuario</span>
+          <strong id="topbar-user">Sin sesión</strong>
+        </div>
+        <div class="topbar-chip">
+          <span>Contexto</span>
+          <strong id="topbar-context">Sin contexto</strong>
+        </div>
+      </div>
+      <div class="topbar-status" id="topbar-status">Sin novedades.</div>
+    </div>
+  </header>
+
+  <div class="page-shell">
+    <aside class="auth-panel">
+      <a class="brand-block brand-link" href="./index.html" aria-label="Volver al inicio">
+        <img class="brand-mark" src="./styles/nidaba-mark.svg" alt="Nidaba">
+        <div>
+          <p class="brand-kicker">Tesorería y administración de cuentas</p>
+          <h1>Nidaba</h1>
+          <p class="brand-copy">Documento operativo para asignación inicial y modificación global equilibrada del presupuesto.</p>
+        </div>
+      </a>
+
+      <div class="auth-card">
+        <section class="auth-session" id="auth-session">
+          <div class="auth-session-header">
+            <div>
+              <span class="info-eyebrow">Sesión abierta</span>
+              <h2 id="auth-session-title">Operador autenticado</h2>
+            </div>
+            <div class="auth-session-actions">
+              <button type="button" class="ghost-btn" id="new-document-btn">Nuevo</button>
+              <button type="button" class="ghost-btn" id="logout-btn">Cerrar sesión</button>
+            </div>
+          </div>
+          <dl class="meta-list compact" id="auth-session-meta">
+            <div><dt>Estado</dt><dd>Sin sesión</dd></div>
+          </dl>
+          <div id="session-message" class="form-message"></div>
+        </section>
+      </div>
+    </aside>
+
+    <main class="context-panel">
+      <section class="hero-band">
+        <div class="hero-ambient">
+          <span class="hero-orbit orbit-a"></span>
+          <span class="hero-orbit orbit-b"></span>
+          <span class="hero-orbit orbit-c"></span>
+          <span class="hero-starfield"></span>
+          <span class="hero-column column-a"></span>
+          <span class="hero-column column-b"></span>
+        </div>
+        <div class="hero-copy">
+          <span class="hero-tag" id="hero-logia-label">Asignación presupuestaria</span>
+          <h2>Un documento visible para un cierre técnico invisible.</h2>
+          <p>El operador registra solo usos al debe y fuentes al haber. Al cerrar, la base genera dos comprobantes técnicos con sus líneas de control.</p>
+          <div class="hero-ribbon">
+            <span>Usos</span>
+            <span>Fuentes</span>
+            <span>Equilibrio</span>
+          </div>
+        </div>
+        <div class="hero-seal">
+          <div class="seal-stage">
+            <div class="seal-ring">
+              <img id="logia-logo-image" class="logia-logo-image" src="./styles/nidaba-mark.svg" alt="Logo de la logia">
+            </div>
+            <div class="seal-caption">Identidad visible del servicio activo</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="workspace-panel">
+        <div class="workspace-header">
+          <div>
+            <span class="info-eyebrow">Documento</span>
+            <h3>Asignación y modificación global del presupuesto</h3>
+          </div>
+          <div class="auth-session-actions">
+            <button type="button" class="ghost-btn" id="new-document-toolbar-btn">Nuevo documento</button>
+            <button type="button" class="ghost-btn" id="save-document-btn">Grabar documento</button>
+            <button type="button" class="ghost-btn" id="close-document-btn">Cerrar documento</button>
+            <button type="button" class="ghost-btn" id="back-home-btn">Volver al portal</button>
+          </div>
+        </div>
+
+        <article class="workspace-card">
+          <div class="document-menu">
+            <button type="button" class="ghost-btn is-active" id="tab-grabados-btn">Grabados</button>
+            <button type="button" class="ghost-btn" id="tab-cerrados-btn">Cerrados</button>
+          </div>
+          <div id="documents-table-message" class="form-message"></div>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Número</th>
+                  <th>Fecha</th>
+                  <th>Período</th>
+                  <th>Repartición</th>
+                  <th>Total usos</th>
+                  <th>Total fuentes</th>
+                  <th>Estado</th>
+                </tr>
+              </thead>
+              <tbody id="documents-table-body">
+                <tr><td colspan="7">Sin documentos visibles.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="workspace-card">
+          <form id="assignment-form" class="auth-form compact-form">
+            <input id="document-id" type="hidden">
+            <div class="form-grid">
+              <div>
+                <label for="document-status">Estado</label>
+                <input id="document-status" type="text" readonly class="readonly-input" value="grabado">
+              </div>
+              <div>
+                <label for="document-owner">Repartición / esquema</label>
+                <input id="document-owner" type="text" readonly class="readonly-input" value="Sin contexto">
+              </div>
+              <div>
+                <label for="document-period">Período</label>
+                <select id="document-period" data-editable="true"></select>
+              </div>
+              <div>
+                <label for="document-mode">Tipo de asignación</label>
+                <select id="document-mode" data-editable="true">
+                  <option value="INICIAL">Inicial</option>
+                  <option value="MODIFICACION_GLOBAL">Modificación global</option>
+                </select>
+              </div>
+              <div>
+                <label for="document-date">Fecha documento</label>
+                <input id="document-date" type="date" data-editable="true">
+              </div>
+              <div>
+                <label for="document-number">Número documento</label>
+                <input id="document-number" type="text" maxlength="50" placeholder="AP-2026-0001" readonly class="readonly-input">
+              </div>
+              <div class="form-span-2">
+                <label for="document-glosa">Glosa total</label>
+                <textarea id="document-glosa" rows="3" placeholder="Aprobación o modificación global del presupuesto." data-editable="true" required></textarea>
+              </div>
+            </div>
+          </form>
+        </article>
+
+        <div class="workspace-grid budget-grid">
+          <article class="workspace-card">
+            <div class="table-card-header">
+              <div>
+                <span class="info-eyebrow budget-section-title">Fuentes</span>
+              </div>
+              <button type="button" class="ghost-btn" id="add-fuente-line-btn" data-editable="true">Agregar fuente</button>
+            </div>
+            <div class="table-wrap">
+              <table class="data-table">
+                <colgroup>
+                  <col class="account-column-width">
+                  <col class="amount-column-width">
+                  <col class="amount-column-width">
+                  <col class="glosa-column-width">
+                  <col class="actions-column-width">
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th>Cuenta</th>
+                    <th class="amount-column">Uso</th>
+                    <th class="amount-column">Fuente</th>
+                    <th>Glosa</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody id="fuentes-lines-body">
+                  <tr><td colspan="5">Aún no hay líneas de fuentes.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+
+          <article class="workspace-card">
+            <div class="table-card-header">
+              <div>
+                <span class="info-eyebrow budget-section-title">Usos</span>
+              </div>
+              <button type="button" class="ghost-btn" id="add-uso-line-btn" data-editable="true">Agregar uso</button>
+            </div>
+            <div class="table-wrap">
+              <table class="data-table">
+                <colgroup>
+                  <col class="account-column-width">
+                  <col class="amount-column-width">
+                  <col class="amount-column-width">
+                  <col class="glosa-column-width">
+                  <col class="actions-column-width">
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th>Cuenta</th>
+                    <th class="amount-column">Uso</th>
+                    <th class="amount-column">Fuente</th>
+                    <th>Glosa</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody id="usos-lines-body">
+                  <tr><td colspan="5">Aún no hay líneas de usos.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+        </div>
+
+        <article class="workspace-card assignment-summary-card">
+          <div class="assignment-summary-grid">
+            <div class="summary-spacer summary-account"></div>
+            <div class="summary-cell summary-uso">
+              <span>Total usos</span>
+              <strong id="total-usos">0</strong>
+            </div>
+            <div class="summary-cell summary-fuente">
+              <span>Total fuentes</span>
+              <strong id="total-fuentes">0</strong>
+            </div>
+            <div class="summary-spacer summary-glosa"></div>
+            <div class="summary-spacer summary-actions"></div>
+            <div class="summary-spacer summary-account"></div>
+            <div class="summary-cell summary-secondary summary-uso">
+              <span>Diferencia</span>
+              <strong id="difference-total">0</strong>
+            </div>
+            <div class="summary-cell summary-secondary summary-fuente">
+              <span>Control</span>
+              <strong id="balance-status">Pendiente</strong>
+            </div>
+            <div class="summary-spacer summary-glosa"></div>
+            <div class="summary-spacer summary-actions"></div>
+          </div>
+          <div id="document-form-message" class="form-message"></div>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <datalist id="accounts-USOS"></datalist>
+  <datalist id="accounts-FUENTES"></datalist>
+
+  <script type="module" src="./styles/asignacion_presupuestaria.js"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Nidaba</title>
+  <desc id="desc">Marca geométrica dorada para el acceso de Nidaba.</desc>
+  <defs>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e0c37b"/>
+      <stop offset="100%" stop-color="#a88534"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="#11161d"/>
+  <circle cx="64" cy="64" r="44" fill="none" stroke="url(#gold)" stroke-width="2.5" opacity="0.95"/>
+  <circle cx="64" cy="64" r="31" fill="none" stroke="url(#gold)" stroke-width="1.4" opacity="0.5"/>
+  <path d="M64 24 88 68 64 104 40 68Z" fill="none" stroke="url(#gold)" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M64 40 74 58H54Z" fill="url(#gold)" opacity="0.86"/>
+  <path d="M52 72h24" stroke="url(#gold)" stroke-width="3" stroke-linecap="round"/>
+  <path d="M58 80h12" stroke="url(#gold)" stroke-width="3" stroke-linecap="round" opacity="0.92"/>
+</svg>
